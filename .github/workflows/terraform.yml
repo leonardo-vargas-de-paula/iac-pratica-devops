@@ -79,6 +79,8 @@ jobs:
         run: terraform apply -auto-approve tfplan
         
       - name: Plan Destroy
+        env:
+          TF_VAR_ip_ssh: ${{ secrets.SSH_PARA_IP }}
         run: terraform plan -destroy -out=tfplan.tfout
         if: github.event.inputs.plan-destroy == 'true'
 
