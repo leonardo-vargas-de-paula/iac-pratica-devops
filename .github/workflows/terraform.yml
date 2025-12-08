@@ -13,23 +13,23 @@ on:
           - true
           - false 
     
-    destroy:
-        description: 'Destruir a infra?'
-        required: true
-        default: 'false'
-        type: choice
-        options:
-          - true
-          - false 
+      destroy:
+          description: 'Destruir a infra?'
+          required: true
+          default: 'false'
+          type: choice
+          options:
+            - true
+            - false 
 
-    plan-destroy:
-        description: 'Planejar o destroy?'
-        required: true
-        default: 'false'
-        type: choice
-        options:
-          - true
-          - false     
+      plan-destroy:
+          description: 'Planejar o destroy?'
+          required: true
+          default: 'false'
+          type: choice
+          options:
+            - true
+            - false     
 
 permissions:
   id-token: write
