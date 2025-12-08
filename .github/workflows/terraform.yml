@@ -4,6 +4,14 @@ name: terraform-ci/cd
 on:
   workflow_dispatch:
     inputs:
+      plan-infra:
+        description: 'Planejar o provisionamento de infra?'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - true
+          - false 
       apply:
         description: 'Aplicar mudanças após o plan?'
         required: true
@@ -73,6 +81,7 @@ jobs:
         env:
           TF_VAR_ip_ssh: ${{ secrets.SSH_PARA_IP }}
         run: terraform plan -out=tfplan
+        if: github.event.inputs.plan-infra == 'true'
 
       - name: Terraform Apply
         if: github.event.inputs.apply == 'true'
