@@ -23,7 +23,7 @@ jobs:
   
     name: 'Terraform CI'
     runs-on: ubuntu-latest
-    environment: secrets
+    
 
     defaults:
       run:
