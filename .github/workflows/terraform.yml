@@ -80,7 +80,7 @@ jobs:
         
       - name: Plan Destroy
         run: terraform plan -destroy -out=tfplan.tfout
-        if: github.event.inputs.plan_destroy == 'true'
+        if: github.event.inputs.plan-destroy == 'true'
 
       - name: Terraform Destroy
         run: terraform apply -destroy -auto-approve tfplan.tfout
