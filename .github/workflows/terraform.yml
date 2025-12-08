@@ -12,6 +12,24 @@ on:
         options:
           - true
           - false 
+    
+    destroy:
+        description: 'Destruir a infra?'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - true
+          - false 
+
+    plan-destroy:
+        description: 'Planejar o destroy?'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - true
+          - false     
 
 permissions:
   id-token: write
@@ -60,6 +78,13 @@ jobs:
         if: github.event.inputs.apply == 'true'
         run: terraform apply -auto-approve tfplan
         
+      - name: Plan Destroy
+        run: terraform plan -destroy -out=tfplan.tfout
+        if: github.event.inputs.plan_destroy == 'true'
+
+      - name: Terraform Destroy
+        run: terraform apply -destroy -auto-approve tfplan.tfout
+        if: github.event.inputs.destroy == 'true'
 
       
 
