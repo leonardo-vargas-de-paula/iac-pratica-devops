@@ -4,6 +4,8 @@ resource "aws_instance" "site_server" {
   key_name               = "server-prod-pratica-devops"
   vpc_security_group_ids = [aws_security_group.site_sg.id]
   iam_instance_profile   = "ECR-EC2"
+  user_data = file("user_data.sh")
+  
 
   tags = {
     Name        = "site_server"
